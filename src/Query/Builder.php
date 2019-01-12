@@ -3,6 +3,7 @@
 namespace Watson\Rememberable\Query;
 
 use DateTime;
+use \Illuminate\Container\Container;
 
 class Builder extends \Illuminate\Database\Query\Builder
 {
@@ -179,7 +180,8 @@ class Builder extends \Illuminate\Database\Query\Builder
      */
     protected function getCacheDriver()
     {
-        return app('cache')->driver($this->cacheDriver);
+        $container = Container::getInstance();
+        return $container['cache']->driver($this->cacheDriver);
     }
 
     /**
